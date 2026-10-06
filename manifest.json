@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "id": "amedela.simple-sysstats",
+  "name": "Simple sysstats",
+  "version": "1.0.0",
+  "author": "AlexMedela",
+  "license": "MIT",
+  "description": "CPU, GPU, RAM and disk usage with temperatures, read directly from /proc and /sys",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Simple sysstats",
+    "description": "CPU, GPU, RAM or disk usage; add one instance per stat",
+    "category": "System",
+    "allowMultiple": true,
+    "defaultSection": "right",
+    "schema": [
+      {
+        "key": "stat",
+        "type": "enum",
+        "label": "Stat",
+        "options": [
+          "CPU",
+          "GPU",
+          "RAM",
+          "Disk"
+        ],
+        "defaultValue": "CPU",
+        "description": "What this instance shows. Add the widget again for each stat you want."
+      },
+      {
+        "key": "interval",
+        "type": "integer",
+        "label": "Refresh interval (seconds)",
+        "min": 0,
+        "max": 3600,
+        "step": 1,
+        "defaultValue": 0,
+        "description": "0 = automatic (3 s, or 30 s for disks)."
+      },
+      {
+        "key": "showTemperature",
+        "type": "boolean",
+        "label": "Show temperature",
+        "defaultValue": true,
+        "description": "CPU and GPU only."
+      },
+      {
+        "key": "mount",
+        "type": "string",
+        "label": "Mount point",
+        "defaultValue": "/",
+        "description": "Disk only. Filesystem to report, e.g. / or /home."
+      },
+      {
+        "key": "gpuCard",
+        "type": "string",
+        "label": "GPU card",
+        "defaultValue": "",
+        "description": "GPU only. Pin a DRM card such as card1. Empty picks the discrete GPU automatically."
+      },
+      {
+        "key": "usageThreshold",
+        "type": "integer",
+        "label": "Usage warning (%)",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "defaultValue": 90,
+        "description": "Highlight the widget at or above this usage."
+      },
+      {
+        "key": "temperatureThreshold",
+        "type": "integer",
+        "label": "Temperature warning (°C)",
+        "min": 0,
+        "max": 120,
+        "step": 5,
+        "defaultValue": 85,
+        "description": "Highlight the widget at or above this temperature."
+      },
+      {
+        "key": "onRightClick",
+        "type": "string",
+        "label": "Right-click command",
+        "defaultValue": "omarchy-launch-or-focus-tui btop"
+      },
+      {
+        "key": "onMiddleClick",
+        "type": "string",
+        "label": "Middle-click command",
+        "defaultValue": ""
+      },
+      {
+        "key": "icon",
+        "type": "string",
+        "label": "Icon",
+        "defaultValue": "",
+        "description": "Nerd Font glyph. Empty uses the default for the stat."
+      },
+      {
+        "key": "fontSize",
+        "type": "integer",
+        "label": "Font size",
+        "min": 0,
+        "max": 48,
+        "step": 1,
+        "defaultValue": 0,
+        "description": "0 = automatic."
+      },
+      {
+        "key": "iconSize",
+        "type": "integer",
+        "label": "Icon size",
+        "min": 0,
+        "max": 64,
+        "step": 1,
+        "defaultValue": 0,
+        "description": "0 = automatic."
+      }
+    ]
+  }
+}
